@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicketApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="TicketApp - Admin" Height="450" Width="800" Background="DarkGray">
+    <Grid x:Name="textBlock">
+
+        <TextBox x:Name="idBox" HorizontalAlignment="Left" Height="24" Margin="122,30,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="100"/>
+        <Label Content="ID" HorizontalAlignment="Left" Margin="122,4,0,0" VerticalAlignment="Top" Width="208"/>
+        <Label Content="Numer Autobusu" HorizontalAlignment="Left" Margin="226,4,0,0" VerticalAlignment="Top"/>
+        <Label Content="Max ilosc siedzen" HorizontalAlignment="Left" Margin="352,4,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.921,0.577"/>
+        <Label Content="Opis" HorizontalAlignment="Left" Margin="476,4,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="busNumber" HorizontalAlignment="Left" Height="24" Margin="226,30,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="maxSeats" HorizontalAlignment="Left" Height="24" Margin="352,30,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="desc" HorizontalAlignment="Left" Height="24" Margin="476,30,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="zatwierdzBtn" Content="Zatwierdz" HorizontalAlignment="Left" Margin="602,30,0,0" VerticalAlignment="Top" Width="80" Height="24" Click="zatwierdzClick"/>
+        <DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Height="301" Margin="122,108,0,0" VerticalAlignment="Top" Width="560" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=id}" ClipboardContentBinding="{x:Null}" Header="ID"/>
+                <DataGridTextColumn Binding="{Binding Path=busNumber}" ClipboardContentBinding="{x:Null}" Header="Numer Autobusu"/>
+                <DataGridTextColumn Binding="{Binding Path=maxSeats}" ClipboardContentBinding="{x:Null}" Header="Max ilosc siedzen"/>
+                <DataGridTextColumn Binding="{Binding Path=des}" ClipboardContentBinding="{x:Null}" Header="Opis"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="loadBtn" Content="Load Database" HorizontalAlignment="Left" Margin="687,108,0,0" VerticalAlignment="Top" Width="95" Height="24" Click="loadBtn_Click"/>
+
+
     </Grid>
 </Window>
