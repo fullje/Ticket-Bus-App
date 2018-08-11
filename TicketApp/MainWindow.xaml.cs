@@ -53,21 +53,25 @@ namespace TicketApp
         private void rowSelected(object sender, SelectionChangedEventArgs e)
         {
             Ticket takeData = new Ticket();
-            string busNumber;
+            string busNumber = null;
             DataGrid dg = (DataGrid)sender;
             DataRowView row_selected = dg.SelectedItem as DataRowView;
-            busNumber = row_selected["busNumber"].ToString();
-            displayGrid.ItemsSource = takeData.choosenDB(Convert.ToInt32(busNumber)).DefaultView;
 
-            Bus busData = new Bus();
-            DataGrid b_dg = (DataGrid)sender;
-            DataRowView rowBus_selected = b_dg.SelectedItem as DataRowView;
+            if(row_selected != null)
+            {
+                busNumber = row_selected["busNumber"].ToString();
+                displayGrid.ItemsSource = takeData.choosenDB(Convert.ToInt32(busNumber)).DefaultView;
 
-            seatsNumberBox.Text = rowBus_selected["maxSeats"].ToString();
-            freeSeatsBox.Text = rowBus_selected["freeSeats"].ToString();
-            descriptionBox.Text = rowBus_selected["description"].ToString();
+                Bus busData = new Bus();
+                DataGrid b_dg = (DataGrid)sender;
+                DataRowView rowBus_selected = b_dg.SelectedItem as DataRowView;
 
-
+                seatsNumberBox.Text = rowBus_selected["maxSeats"].ToString();
+                freeSeatsBox.Text = rowBus_selected["freeSeats"].ToString();
+                descriptionBox.Text = rowBus_selected["description"].ToString();
+            }
+   
+            
         }
 
         public class Ticket
