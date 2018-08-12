@@ -16,3 +16,4 @@ C:\Projekty\TicketApp\TicketApp\TicketApp\obj\Debug\TicketApp.csproj.CoreCompile
 C:\Projekty\TicketApp\TicketApp\TicketApp\obj\Debug\TicketApp.csproj.CopyComplete
 C:\Projekty\TicketApp\TicketApp\TicketApp\obj\Debug\TicketApp.exe
 C:\Projekty\TicketApp\TicketApp\TicketApp\obj\Debug\TicketApp.pdb
+C:\Projekty\TicketApp\TicketApp\TicketApp\obj\Debug\TicketApp.csprojAssemblyReference.cache

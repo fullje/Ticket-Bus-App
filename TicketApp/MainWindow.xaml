@@ -11,14 +11,14 @@
             <TabItem Header="Dodaj Autobus">
                 <Grid x:Name="InsideTab1" Background="DarkGray">
 
-                    <TextBox x:Name="idBox" HorizontalAlignment="Left" Height="24" Margin="43,57,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="100"/>
+                    <TextBox x:Name="idBox" HorizontalAlignment="Left" Height="24" Margin="43,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
                     <Label Content="ID" HorizontalAlignment="Left" Margin="43,31,0,0" VerticalAlignment="Top" Width="208"/>
                     <Label Content="Numer Autobusu" HorizontalAlignment="Left" Margin="147,31,0,0" VerticalAlignment="Top"/>
                     <Label Content="Max ilosc siedzen" HorizontalAlignment="Left" Margin="273,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.921,0.577"/>
                     <Label Content="Opis" HorizontalAlignment="Left" Margin="397,31,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="busNumber" HorizontalAlignment="Left" Height="24" Margin="147,57,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="maxSeats" HorizontalAlignment="Left" Height="24" Margin="273,57,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="description" HorizontalAlignment="Left" Height="24" Margin="397,57,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="busNumber" HorizontalAlignment="Left" Height="24" Margin="147,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="maxSeats" HorizontalAlignment="Left" Height="24" Margin="273,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="description" HorizontalAlignment="Left" Height="24" Margin="397,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <Button x:Name="zatwierdzBtn" Content="Zatwierdz" HorizontalAlignment="Left" Margin="523,57,0,0" VerticalAlignment="Top" Width="80" Height="24" Click="zatwierdzClick"/>
                     <DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Height="246" Margin="87,135,0,0" VerticalAlignment="Top" Width="455" AutoGenerateColumns="False" SelectionChanged="dataGrid1_SelectionChanged">
                         <DataGrid.Columns>
@@ -29,7 +29,8 @@
                             <DataGridTextColumn Binding="{Binding Path=description}" ClipboardContentBinding="{x:Null}" Header="Opis"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button x:Name="loadBtn" Content="Load Database" HorizontalAlignment="Left" Margin="573,135,0,0" VerticalAlignment="Top" Width="96" Height="24" Click="loadBtn_Click"/>
+                    <Button x:Name="loadBtn" Content="Reload Database" HorizontalAlignment="Left" Margin="573,135,0,0" VerticalAlignment="Top" Width="96" Height="24" Click="loadBtn_Click"/>
+                    <Button x:Name="deleteBtn" Content="Delete" HorizontalAlignment="Left" Margin="573,164,0,0" VerticalAlignment="Top" Width="96" Height="24" Click="deleteBtn_Click"/>
 
                 </Grid>
 
@@ -42,7 +43,7 @@
                             <DataGridTextColumn Binding="{Binding Path=description}" ClipboardContentBinding="{x:Null}" Header="Opis"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <Button Content="loadCheckButton" HorizontalAlignment="Left" Margin="197,10,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="Button_Click"/>
+                    <Button Content="Reload" HorizontalAlignment="Left" Margin="197,10,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="Button_Click"/>
                     <DataGrid x:Name="displayGrid" HorizontalAlignment="Left" Height="340" Margin="349,41,0,0" VerticalAlignment="Top" Width="264" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=id}" ClipboardContentBinding="{x:Null}" Header="ID"/>

@@ -22,7 +22,12 @@ namespace TicketApp
     {
         public MainWindow()
         {
+            Bus bus = new Bus();
+
             InitializeComponent();
+
+            dataGrid1.ItemsSource = bus.readDB().DefaultView;
+            checkGrid.ItemsSource = bus.readDB().DefaultView;
 
         }
 
@@ -30,6 +35,7 @@ namespace TicketApp
         {
             Bus bus = new Bus();
             bus.insertDB(Convert.ToInt32(idBox.Text), Convert.ToInt32(busNumber.Text), Convert.ToInt32(maxSeats.Text), description.Text);
+            dataGrid1.ItemsSource = bus.readDB().DefaultView;
 
         }
 
@@ -37,6 +43,20 @@ namespace TicketApp
         {
             Bus bus = new Bus();
             dataGrid1.ItemsSource = bus.readDB().DefaultView;
+        }
+
+        private void deleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Bus bus = new Bus();
+
+            //string rowID = dataGrid1.SelectedItem.ToString();
+            DataRowView rowView = dataGrid1.SelectedItem as DataRowView;
+            string busID = rowView.Row[1].ToString();
+
+            bus.deleteDB(Convert.ToInt32(busID));
+            dataGrid1.ItemsSource = bus.readDB().DefaultView;
+
+            //MessageBox.Show(rowID.ToString());
         }
 
         private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -49,6 +69,7 @@ namespace TicketApp
             Bus bus = new Bus();
             checkGrid.ItemsSource = bus.readDB().DefaultView;
         }
+
 
         private void rowSelected(object sender, SelectionChangedEventArgs e)
         {
@@ -150,9 +171,27 @@ namespace TicketApp
                 busDB.Close();
             }
 
+            public void deleteDB(int busNumber)
+            {
+                string Query = "DELETE FROM bus WHERE busNumber=" + busNumber + ";";
+                MySqlCommand commandDelete = new MySqlCommand(Query, busDB);
+
+               
+                busDB.Open();
+                MySqlDataReader reader;
+                reader = commandDelete.ExecuteReader();
+                while (reader.Read())
+                {
+
+                }
+                
+                busDB.Close();
+
+            }
+
 
         }
 
-
+        
     }
 }
