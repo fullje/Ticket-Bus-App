@@ -23,12 +23,15 @@ namespace TicketApp
         public MainWindow()
         {
             Bus bus = new Bus();
+            Ticket ticket = new Ticket();
 
             InitializeComponent();
 
             dataGrid1.ItemsSource = bus.readDB().DefaultView;
             checkGrid.ItemsSource = bus.readDB().DefaultView;
-            
+            //TODO : FUNCITON TO LOAD ALL OF THE THINGS
+     
+
 
         }
 
@@ -40,6 +43,7 @@ namespace TicketApp
             comboBox_1.ItemsSource = bus.readDB().DefaultView;
             comboBox_1.DisplayMemberPath = "description";
 
+            comboSeat.Items.Clear();
 
         }
 
@@ -48,6 +52,11 @@ namespace TicketApp
         private void comboBox_1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Bus bus = new Bus();
+            Ticket ticket = new Ticket();
+            int holder = 0;
+            int seatNbr = 0;
+            int busNbr = 0;
+            string freeSeat = null;
             ComboBox cmb = (ComboBox)sender;
 
 
@@ -55,10 +64,56 @@ namespace TicketApp
             if(drv != null)
             {
                 busNumberTxt.Text = drv["description"].ToString();
-                comboSeat.ItemsSource = bus.readDB().DefaultView;
+
+                holder = Convert.ToInt32(drv["maxSeats"].ToString()); //How many seats are set
+                busNbr = Convert.ToInt32(drv["busNumber"].ToString());
+
+                //MessageBox.Show("Bus number: " + busNbr.ToString());
+
+                string[] seats = new string[holder];
+
+                DataTable dt = ticket.seats(busNbr); // Here has to be busNumber from selected ComboBox
+
+                for (int y = 0; y < dt.Rows.Count; y++)
+                {
+                    //MessageBox.Show(dt.Rows[y]["seatNumber"].ToString());
+                    seatNbr = Convert.ToInt32(dt.Rows[y]["seatNumber"]); // Less in loop :v
+                    
+                    for (int i = 1; i < seats.Length+1; i++)
+                    {
+                        //MessageBox.Show((i) + "========" + seatNbr.ToString());
+                        if (i == seatNbr)
+                        {
+                            seats[i-1] = seatNbr.ToString();
+                        }
+                    }
+                }
                 
-                comboSeat.DisplayMemberPath = '"' + drv["freeSeats"].ToString() + '"';
+                for (int z = 0; z < seats.Length; z++)
+                {
+                    //MessageBox.Show("Siedzenie numer: " + (z+1) + " jest " + seats[z]);
+
+                    if(seats[z] == null)
+                    {
+                        //MessageBox.Show("Siedzenie numer: " + (z + 1) + " jest wolne");
+                        freeSeat = (z + 1).ToString();
+
+                        comboSeat.Items.Add(freeSeat);
+                    }
+                }
             }
+
+
+            
+
+            //string[] seats = new string[]; // Here has to be array of maxSeats from bus
+
+            //for (int i = 0; i < dt.Rows.Count; i++)
+            //{
+                //MessageBox.Show(dt.Rows[i]["seatNumber"].ToString());
+                //comboSeat.Items.Add(dt.Rows[i]["seatNumber"].ToString());
+
+            //}
 
 
         }
@@ -160,6 +215,24 @@ namespace TicketApp
                 return dt;
             }
 
+
+            public DataTable seats(int busNumber)
+            {
+                string Query = "SELECT * FROM ticket WHERE busNumber=" + busNumber + ";";
+                
+                MySqlCommand commandSelect = new MySqlCommand(Query, ticketDB);
+
+                MySqlDataAdapter adp = new MySqlDataAdapter(commandSelect);
+                DataTable dt = new DataTable();
+                adp.Fill(dt);
+
+                ticketDB.Open();
+
+                ticketDB.Close();
+
+                return dt;
+            }
+
         }
 
         public class Bus
@@ -216,9 +289,6 @@ namespace TicketApp
                 busDB.Close();
 
             }
-
-
-
 
         }
 
