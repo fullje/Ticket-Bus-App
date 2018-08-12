@@ -5,14 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicketApp"
         mc:Ignorable="d"
-        Title="TicketApp - Admin" Height="450" Width="800" Background="DarkGray">
+        Title="TicketApp" Height="450" Width="800" Background="DarkGray">
     <Grid x:Name="textBlock">
         <TabControl HorizontalAlignment="Left" Height="419" VerticalAlignment="Top" Width="792">
-            <TabItem Header="Dodaj Autobus">
+            <TabItem Header="Admin - Dodaj Autobus">
                 <Grid x:Name="InsideTab1" Background="DarkGray">
-
-                    <TextBox x:Name="idBox" HorizontalAlignment="Left" Height="24" Margin="43,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-                    <Label Content="ID" HorizontalAlignment="Left" Margin="43,31,0,0" VerticalAlignment="Top" Width="208"/>
                     <Label Content="Numer Autobusu" HorizontalAlignment="Left" Margin="147,31,0,0" VerticalAlignment="Top"/>
                     <Label Content="Max ilosc siedzen" HorizontalAlignment="Left" Margin="273,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.921,0.577"/>
                     <Label Content="Opis" HorizontalAlignment="Left" Margin="397,31,0,0" VerticalAlignment="Top"/>
@@ -20,7 +17,7 @@
                     <TextBox x:Name="maxSeats" HorizontalAlignment="Left" Height="24" Margin="273,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <TextBox x:Name="description" HorizontalAlignment="Left" Height="24" Margin="397,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <Button x:Name="zatwierdzBtn" Content="Zatwierdz" HorizontalAlignment="Left" Margin="523,57,0,0" VerticalAlignment="Top" Width="80" Height="24" Click="zatwierdzClick"/>
-                    <DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Height="246" Margin="87,135,0,0" VerticalAlignment="Top" Width="455" AutoGenerateColumns="False" SelectionChanged="dataGrid1_SelectionChanged">
+                    <DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Height="246" Margin="87,135,0,0" VerticalAlignment="Top" Width="455" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Path=id}" ClipboardContentBinding="{x:Null}" Header="ID"/>
                             <DataGridTextColumn Binding="{Binding Path=busNumber}" ClipboardContentBinding="{x:Null}" Header="Numer Autobusu"/>
@@ -35,7 +32,7 @@
                 </Grid>
 
             </TabItem>
-            <TabItem Header="Przegladaj dany kurs">
+            <TabItem Header="Admin - Przegladaj dany kurs">
                 <Grid Background="DarkGray">
                     <DataGrid x:Name="checkGrid" HorizontalAlignment="Left" Height="371" Margin="10,10,0,0" VerticalAlignment="Top" Width="182" AutoGenerateColumns="False" SelectionChanged="rowSelected">
                         <DataGrid.Columns>
@@ -54,6 +51,22 @@
                     <TextBox x:Name="seatsNumberBox" HorizontalAlignment="Left" Height="23" Margin="349,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="75"/>
                     <TextBox x:Name="freeSeatsBox" HorizontalAlignment="Left" Height="23" Margin="444,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="75"/>
                     <TextBox x:Name="descriptionBox" HorizontalAlignment="Left" Height="23" Margin="538,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="153"/>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Klient - Wybierz kurs">
+                <Grid Background="DarkGray">
+                    <Label Content="Wybierz kurs" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Wybierz miejsce" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="comboBox_1" HorizontalAlignment="Left" Margin="139,11,0,0" VerticalAlignment="Top" Width="120" Height="25" DropDownOpened="comboBox_1_DropDownOpened" SelectionChanged="comboBox_1_SelectionChanged"/>
+                    <TextBox x:Name="busNumberTxt" HorizontalAlignment="Left" Height="23" Margin="425,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="seatTxt" HorizontalAlignment="Left" Height="23" Margin="425,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <CheckBox x:Name="_window" Content="Okno" HorizontalAlignment="Left" Margin="550,50,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="_hallway" Content="Korytarz" HorizontalAlignment="Left" Margin="613,50,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="descriptionTxt" HorizontalAlignment="Left" Height="23" Margin="425,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <Button x:Name="applyBtn" Content="Potwierdzam" HorizontalAlignment="Left" Margin="425,129,0,0" VerticalAlignment="Top" Width="120" Height="25
+                            "/>
+                    <ComboBox x:Name="comboSeat" HorizontalAlignment="Left" Margin="139,41,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
 
                 </Grid>
             </TabItem>

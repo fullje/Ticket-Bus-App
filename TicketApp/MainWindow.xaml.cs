@@ -28,13 +28,45 @@ namespace TicketApp
 
             dataGrid1.ItemsSource = bus.readDB().DefaultView;
             checkGrid.ItemsSource = bus.readDB().DefaultView;
+            
+
+        }
+
+        private void comboBox_1_DropDownOpened(object sender, EventArgs e)
+        {
+            Bus bus = new Bus();
+
+
+            comboBox_1.ItemsSource = bus.readDB().DefaultView;
+            comboBox_1.DisplayMemberPath = "description";
+
+
+        }
+
+      
+
+        private void comboBox_1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Bus bus = new Bus();
+            ComboBox cmb = (ComboBox)sender;
+
+
+            DataRowView drv = cmb.SelectedItem as DataRowView;
+            if(drv != null)
+            {
+                busNumberTxt.Text = drv["description"].ToString();
+                comboSeat.ItemsSource = bus.readDB().DefaultView;
+                
+                comboSeat.DisplayMemberPath = '"' + drv["freeSeats"].ToString() + '"';
+            }
+
 
         }
 
         private void zatwierdzClick(object sender, RoutedEventArgs e)
         {
             Bus bus = new Bus();
-            bus.insertDB(Convert.ToInt32(idBox.Text), Convert.ToInt32(busNumber.Text), Convert.ToInt32(maxSeats.Text), description.Text);
+            bus.insertDB(Convert.ToInt32(busNumber.Text), Convert.ToInt32(maxSeats.Text), description.Text);
             dataGrid1.ItemsSource = bus.readDB().DefaultView;
 
         }
@@ -57,11 +89,6 @@ namespace TicketApp
             dataGrid1.ItemsSource = bus.readDB().DefaultView;
 
             //MessageBox.Show(rowID.ToString());
-        }
-
-        private void dataGrid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -132,6 +159,7 @@ namespace TicketApp
 
                 return dt;
             }
+
         }
 
         public class Bus
@@ -156,11 +184,11 @@ namespace TicketApp
             }
 
             //Insert into 'bus' db
-            public void insertDB(int id, int busNumber, int maxSeats, string description)
+            public void insertDB(int busNumber, int maxSeats, string description)
             {
                 //MessageBox.Show(id + ", " + busNumber + ", " + maxSeats + ", " + des);
                 int freeSeats = maxSeats;
-                string Query = "INSERT INTO bus (id, busNumber, maxSeats, freeSeats, description) VALUES (" + id + "," + busNumber + "," + maxSeats + "," + freeSeats + ",'" + description + "');";
+                string Query = "INSERT INTO bus (busNumber, maxSeats, freeSeats, description) VALUES (" + busNumber + "," + maxSeats + "," + freeSeats + ",'" + description + "');";
                 MySqlCommand commandInsert = new MySqlCommand(Query, busDB);
                 MySqlDataReader reader;
                 busDB.Open();
@@ -190,8 +218,10 @@ namespace TicketApp
             }
 
 
+
+
         }
 
-        
+      
     }
 }
