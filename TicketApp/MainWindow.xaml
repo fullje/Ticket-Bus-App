@@ -13,9 +13,9 @@
                     <Label Content="Numer Autobusu" HorizontalAlignment="Left" Margin="147,31,0,0" VerticalAlignment="Top"/>
                     <Label Content="Max ilosc siedzen" HorizontalAlignment="Left" Margin="273,31,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.921,0.577"/>
                     <Label Content="Opis" HorizontalAlignment="Left" Margin="397,31,0,0" VerticalAlignment="Top"/>
-                    <TextBox x:Name="busNumber" HorizontalAlignment="Left" Height="24" Margin="147,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="maxSeats" HorizontalAlignment="Left" Height="24" Margin="273,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="description" HorizontalAlignment="Left" Height="24" Margin="397,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="busNumber" HorizontalAlignment="Left" Height="24" Margin="147,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="busTextChanged"/>
+                    <TextBox x:Name="maxSeats" HorizontalAlignment="Left" Height="24" Margin="273,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="maxSeats_TextChanged"/>
+                    <TextBox x:Name="description" HorizontalAlignment="Left" Height="24" Margin="397,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="description_TextChanged"/>
                     <Button x:Name="zatwierdzBtn" Content="Zatwierdz" HorizontalAlignment="Left" Margin="523,57,0,0" VerticalAlignment="Top" Width="80" Height="24" Click="zatwierdzClick"/>
                     <DataGrid x:Name="dataGrid1" HorizontalAlignment="Left" Height="246" Margin="87,135,0,0" VerticalAlignment="Top" Width="455" AutoGenerateColumns="False">
                         <DataGrid.Columns>
@@ -48,9 +48,8 @@
                             <DataGridTextColumn Binding="{Binding Path=name}" ClipboardContentBinding="{x:Null}" Header="Imie"/>
                         </DataGrid.Columns>
                     </DataGrid>
-                    <TextBox x:Name="seatsNumberBox" HorizontalAlignment="Left" Height="23" Margin="349,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="freeSeatsBox" HorizontalAlignment="Left" Height="23" Margin="444,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="75"/>
-                    <TextBox x:Name="descriptionBox" HorizontalAlignment="Left" Height="23" Margin="538,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="153"/>
+                    <TextBox x:Name="seatsNumberBox" HorizontalAlignment="Left" Height="23" Margin="349,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75"/>
+                    <TextBox x:Name="descriptionBox" HorizontalAlignment="Left" Height="23" Margin="460,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="153"/>
 
                 </Grid>
             </TabItem>
@@ -59,15 +58,19 @@
                     <Label Content="Wybierz kurs" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                     <Label Content="Wybierz miejsce" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
                     <ComboBox x:Name="comboBox_1" HorizontalAlignment="Left" Margin="139,11,0,0" VerticalAlignment="Top" Width="120" Height="25" DropDownOpened="comboBox_1_DropDownOpened" SelectionChanged="comboBox_1_SelectionChanged"/>
-                    <TextBox x:Name="busNumberTxt" HorizontalAlignment="Left" Height="23" Margin="425,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <TextBox x:Name="seatTxt" HorizontalAlignment="Left" Height="23" Margin="425,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="busNumberTxt" HorizontalAlignment="Left" Height="23" Margin="425,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
+                    <TextBox x:Name="seatTxt" HorizontalAlignment="Left" Height="23" Margin="425,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
                     <CheckBox x:Name="_window" Content="Okno" HorizontalAlignment="Left" Margin="550,50,0,0" VerticalAlignment="Top" IsEnabled="False"/>
                     <CheckBox x:Name="_hallway" Content="Korytarz" HorizontalAlignment="Left" Margin="613,50,0,0" VerticalAlignment="Top" IsEnabled="False"/>
-                    <TextBox x:Name="descriptionTxt" HorizontalAlignment="Left" Height="23" Margin="425,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="descriptionTxt" HorizontalAlignment="Left" Height="23" Margin="425,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
                     <Button x:Name="applyBtn" Content="Potwierdzam" HorizontalAlignment="Left" Margin="425,160,0,0" VerticalAlignment="Top" Width="120" Height="25
                             " Click="applyBtn_Click"/>
                     <ComboBox x:Name="comboSeat" HorizontalAlignment="Left" Margin="139,41,0,0" VerticalAlignment="Top" Width="120" Height="25" SelectionChanged="comboSeat_SelectionChanged"/>
-                    <TextBox x:Name="nameTxt" HorizontalAlignment="Left" Height="23" Margin="425,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="nameTxt" HorizontalAlignment="Left" Height="23" Margin="425,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False" TextChanged="nameTxt_TextChanged"/>
+                    <Label Content="Numer busa" HorizontalAlignment="Left" Margin="326,10,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Numer siedzenia" HorizontalAlignment="Left" Margin="326,45,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Kierunek" HorizontalAlignment="Left" Margin="326,82,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Imie" HorizontalAlignment="Left" Margin="326,119,0,0" VerticalAlignment="Top"/>
 
                 </Grid>
             </TabItem>
