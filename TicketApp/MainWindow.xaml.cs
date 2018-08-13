@@ -23,6 +23,7 @@ namespace TicketApp
         public MainWindow()
         {
             InitializeComponent();
+            
             loadAtStart();
         }
 
@@ -150,8 +151,9 @@ namespace TicketApp
         private void applyBtn_Click(object sender, RoutedEventArgs e)
         {
             Ticket ticket = new Ticket();
-            ticket.insertDB(nameTxt.Text.ToString(), Convert.ToInt32(busNumberTxt.Text.ToString()), Convert.ToInt32(seatTxt.Text.ToString()), _window.IsChecked.Value, _hallway.IsChecked.Value);
 
+            ticket.insertDB(nameTxt.Text.ToString(), Convert.ToInt32(busNumberTxt.Text.ToString()), Convert.ToInt32(seatTxt.Text.ToString()), _window.IsChecked.Value, _hallway.IsChecked.Value);
+            
             nameTxt.Text = "";
             seatTxt.Text = "";
 
@@ -170,12 +172,24 @@ namespace TicketApp
         private void zatwierdzClick(object sender, RoutedEventArgs e)
         {
             Bus bus = new Bus();
-            bus.insertDB(Convert.ToInt32(busNumber.Text), Convert.ToInt32(maxSeats.Text), description.Text);
-            dataGrid1.ItemsSource = bus.readDB().DefaultView;
+            
+            int value;
 
-            busNumber.Text = "";
-            maxSeats.Text = "";
-            description.Text = "";
+            if ((int.TryParse(busNumber.Text, out value)) && (int.TryParse(maxSeats.Text, out value)))
+            {
+                
+                bus.insertDB(Convert.ToInt32(busNumber.Text), Convert.ToInt32(maxSeats.Text), description.Text);
+                dataGrid1.ItemsSource = bus.readDB().DefaultView;
+                
+                busNumber.Text = "";
+                maxSeats.Text = "";
+                description.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Popraw wprowadzone dane!");
+            }
+            
 
         }
 
