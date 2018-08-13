@@ -47,7 +47,25 @@ namespace TicketApp
 
         }
 
-      
+        private void comboSeat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (comboSeat.SelectedItem != null)
+            {
+                seatTxt.Text = comboSeat.SelectedItem.ToString();
+
+                if (Convert.ToInt32(comboSeat.SelectedItem.ToString()) % 2 == 0)
+                {
+                    _window.IsChecked = true;
+                    _hallway.IsChecked = false;
+                } else
+                {
+                    _hallway.IsChecked = true;
+                    _window.IsChecked = false;
+                }
+                
+
+            }
+        }
 
         private void comboBox_1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -63,7 +81,8 @@ namespace TicketApp
             DataRowView drv = cmb.SelectedItem as DataRowView;
             if(drv != null)
             {
-                busNumberTxt.Text = drv["description"].ToString();
+                descriptionTxt.Text = drv["description"].ToString();
+                busNumberTxt.Text = drv["busNumber"].ToString();
 
                 holder = Convert.ToInt32(drv["maxSeats"].ToString()); //How many seats are set
                 busNbr = Convert.ToInt32(drv["busNumber"].ToString());
@@ -177,6 +196,16 @@ namespace TicketApp
             
         }
 
+
+        private void applyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Ticket ticket = new Ticket();
+            //MessageBox.Show(_window.IsChecked.Value.ToString(), _hallway.IsChecked.Value.ToString());
+            //(string name, int busNumber, int seatNumber, bool isFree, bool isWindow)
+            //MessageBox.Show(nameTxt.Text.ToString() + " " + busNumberTxt.Text.ToString() + " " + seatTxt.Text.ToString() + " " + _window.IsChecked.Value + " " +  _hallway.IsChecked.Value);
+            ticket.insertDB(nameTxt.Text.ToString(), Convert.ToInt32(busNumberTxt.Text.ToString()), Convert.ToInt32(seatTxt.Text.ToString()), _window.IsChecked.Value, _hallway.IsChecked.Value);
+        }
+
         public class Ticket
         {
             static string setConnection = "SERVER=localhost;DATABASE=ticketdb;User ID=root;Password=;SSLmode=none";
@@ -231,6 +260,19 @@ namespace TicketApp
                 ticketDB.Close();
 
                 return dt;
+            }
+
+            public void insertDB(string name, int busNumber, int seatNumber, bool isFree, bool isWindow)
+            {
+                string Query = "INSERT INTO ticket (busNumber, name, seatNumber, isFree, isWindow) VALUES (" + busNumber + ",'" + name + "'," + seatNumber + "," + isFree + "," + isWindow + ");";
+                MySqlCommand commandInsert = new MySqlCommand(Query, ticketDB);
+                MySqlDataReader reader;
+                ticketDB.Open();
+
+                reader = commandInsert.ExecuteReader();
+
+                reader.Close();
+                ticketDB.Close();
             }
 
         }
@@ -292,6 +334,5 @@ namespace TicketApp
 
         }
 
-      
     }
 }

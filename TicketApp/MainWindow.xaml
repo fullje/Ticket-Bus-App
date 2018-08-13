@@ -61,12 +61,13 @@
                     <ComboBox x:Name="comboBox_1" HorizontalAlignment="Left" Margin="139,11,0,0" VerticalAlignment="Top" Width="120" Height="25" DropDownOpened="comboBox_1_DropDownOpened" SelectionChanged="comboBox_1_SelectionChanged"/>
                     <TextBox x:Name="busNumberTxt" HorizontalAlignment="Left" Height="23" Margin="425,13,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                     <TextBox x:Name="seatTxt" HorizontalAlignment="Left" Height="23" Margin="425,48,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <CheckBox x:Name="_window" Content="Okno" HorizontalAlignment="Left" Margin="550,50,0,0" VerticalAlignment="Top"/>
-                    <CheckBox x:Name="_hallway" Content="Korytarz" HorizontalAlignment="Left" Margin="613,50,0,0" VerticalAlignment="Top"/>
+                    <CheckBox x:Name="_window" Content="Okno" HorizontalAlignment="Left" Margin="550,50,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+                    <CheckBox x:Name="_hallway" Content="Korytarz" HorizontalAlignment="Left" Margin="613,50,0,0" VerticalAlignment="Top" IsEnabled="False"/>
                     <TextBox x:Name="descriptionTxt" HorizontalAlignment="Left" Height="23" Margin="425,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                    <Button x:Name="applyBtn" Content="Potwierdzam" HorizontalAlignment="Left" Margin="425,129,0,0" VerticalAlignment="Top" Width="120" Height="25
-                            "/>
-                    <ComboBox x:Name="comboSeat" HorizontalAlignment="Left" Margin="139,41,0,0" VerticalAlignment="Top" Width="120" Height="25"/>
+                    <Button x:Name="applyBtn" Content="Potwierdzam" HorizontalAlignment="Left" Margin="425,160,0,0" VerticalAlignment="Top" Width="120" Height="25
+                            " Click="applyBtn_Click"/>
+                    <ComboBox x:Name="comboSeat" HorizontalAlignment="Left" Margin="139,41,0,0" VerticalAlignment="Top" Width="120" Height="25" SelectionChanged="comboSeat_SelectionChanged"/>
+                    <TextBox x:Name="nameTxt" HorizontalAlignment="Left" Height="23" Margin="425,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
                 </Grid>
             </TabItem>
